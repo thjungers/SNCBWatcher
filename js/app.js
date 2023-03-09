@@ -143,7 +143,7 @@ const loadConnections = event => {
         )
     })
     .catch(err => {
-        if(err.cause && err.cause.status == 404)
+        if(err.cause?.status == 404)
             document.getElementById("found-connections").textContent = "Aucune connexion trouvée entre ces gares."
         else {
             document.getElementById("found-connections").textContent = "Erreur de chargement des données de connexion."

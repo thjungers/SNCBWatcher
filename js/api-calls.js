@@ -32,10 +32,10 @@ export const getStations = async () => request("/stations/")
 
 /**
  * Get a vehicle from the API
- * @param {string} value the train number
+ * @param {string} trainNumber the train number
  * @returns the fetch Promise
  */
-export const getVehicle = async value => request(`/vehicle/?id=BE.NMBS.${value}`)
+export const getVehicle = async trainNumber => request(`/vehicle/?id=BE.NMBS.${trainNumber}`)
 
 /**
  * Get connections

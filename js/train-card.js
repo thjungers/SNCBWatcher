@@ -32,7 +32,7 @@ export default class TrainCard extends HTMLElement {
     static get observedAttributes() { return ["train-number", "station"] }
 
     connectedCallback() {
-        this.render()
+        this.update() // update calls render 
         this.connected = true
     }
 
@@ -44,8 +44,10 @@ export default class TrainCard extends HTMLElement {
         else
             throw new Error(`unexpected change for attribute ${name} from ${oldValue} to ${newValue}`)
         
-        if(this.connected)
-            this.render() // only render if this change occured after the element was connected to the DOM
+        if(this.connected) {
+            // only update and render if this change occured after the element was connected to the DOM
+            this.update() // update calls render 
+        }
     }
 
     render() {
@@ -88,5 +90,6 @@ export default class TrainCard extends HTMLElement {
         .then(data => {
             this.lastUpdate = new Date()
         })
+        .finally(() => this.render())
     }
 }

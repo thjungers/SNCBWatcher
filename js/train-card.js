@@ -1,15 +1,26 @@
+/**
+ * Custom component for train watch cards
+ * @class
+ * @constructor
+ */
 export default class TrainCard extends HTMLElement {
     constructor() {
         super()
 
+        /** @type {string} The train number, set by the "train-number" attribute */
         this.trainNumber = ""
+        /** @type {string} The watched station, set by the "station" attribute */
         this.station = ""
+        /** @type {?Date} The time of the last update */
         this.lastUpdate = null
+        /** @type {?Date} The time of the next planned update */
         this.nextUpdate = null
 
+        /** @type {Boolean} Whether the custom element is connected to the DOM */
         this.connected = false
         
         const template = document.getElementById("train-card-template")
+        /** @type {ShadowRoot} The root shadow element */
         this.shadow = this.attachShadow({mode: "open"})
         this.shadow.appendChild(template.content.cloneNode(true))
         this.shadow.appendChild(document.getElementById("bootstrap-css").cloneNode())

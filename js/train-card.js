@@ -1,3 +1,5 @@
+import { getVehicle } from "./api-calls.js"
+
 /**
  * Custom component for train watch cards
  * @class
@@ -81,12 +83,7 @@ export default class TrainCard extends HTMLElement {
     }
 
     update() {
-        fetch(apiUrl + `/vehicle/?id=BE.NMBS.${this.trainNumber}&format=json&lang=fr`)
-        .then(res => {
-            if(!res.ok) 
-                throw new Error("Not 2xx response", {cause: res})
-            return res
-        })
+        getVehicle(this.trainNumber)
         .then(res => res.json())
         .then(data => {
             this.lastUpdate = new Date()

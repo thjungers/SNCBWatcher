@@ -27,7 +27,7 @@ export default class TrainCard extends HTMLElement {
         this.shadow.appendChild(document.getElementById("bootstrap-icons-css").cloneNode())
     }
 
-    static get observedAttributes() { return ["train-number", "station", "last-update", "next-update"] }
+    static get observedAttributes() { return ["train-number", "station"] }
 
     connectedCallback() {
         this.render()
@@ -39,10 +39,6 @@ export default class TrainCard extends HTMLElement {
             this.trainNumber = newValue
         else if(name === "station")
             this.station = newValue
-        else if(name === "last-update")
-            this.lastUpdate = new Date(newValue)
-        else if(name === "next-update")
-            this.nextUpdate = newValue !== null ? new Date(newValue) : null
         else
             throw new Error(`unexpected change for attribute ${name} from ${oldValue} to ${newValue}`)
         
@@ -58,7 +54,7 @@ export default class TrainCard extends HTMLElement {
         if(this.lastUpdate === null) {
             updateText = ""
         } else if(this.nextUpdate !== null && timeDiff < 0) {
-            // next-update is defined but is in the past
+            // nextUpdate is defined but is in the past: the component should update momentarily
             updateText = "bientôt"
         } else if(Math.abs(timeDiff) < 90) {
             updateText = reltimefmt.format(Math.round(timeDiff), "second")
@@ -93,7 +89,7 @@ export default class TrainCard extends HTMLElement {
         })
         .then(res => res.json())
         .then(data => {
-            this.setAttribute("last-update", new Date().toISOString())
+            this.lastUpdate = new Date()
         })
     }
 }

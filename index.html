@@ -57,55 +57,59 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-4 border-end">
-                            <h6 class="mb-3">Par numéro de train</h6>
-                            <form id="form-by-train-number">
-                                <div class="mb-3">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <label for="modal-train-number" class="form-label">Numéro de train</label>
-                                        <div class="spinner-border spinner-border-sm d-none" id="modal-train-number-spinner" role="status">
-                                            <span class="visually-hidden">Chargement...</span>
+                        <div class="col-lg-4">
+                            <fieldset>
+                                <legend>Par numéro de train</legend>
+                                <form id="form-by-train-number">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <label for="modal-train-number" class="form-label">Numéro de train</label>
+                                            <div class="spinner-border spinner-border-sm d-none" id="modal-train-number-spinner" role="status">
+                                                <span class="visually-hidden">Chargement...</span>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" name="train-number" id="modal-train-number" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="modal-train-number-station" class="form-label">Gare</label>
+                                        <select class="form-select" name="station" id="modal-train-number-station" required default-empty>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-3">Suivre</button>
+                                </form>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-8">
+                            <fieldset>
+                                <legend>Par trajet</legend>
+                                <form id="form-by-connection">
+                                    <div class="row row-cols-2">
+                                        <div class="col mb-3">
+                                            <label for="modal-connection-start-station" class="form-label">Gare de départ</label>
+                                            <input list="all-stations" class="form-control" name="start-station" id="modal-connection-start-station" required>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="modal-connection-end-station" class="form-label">Gare d'arrivée</label>
+                                            <input list="all-stations" class="form-control" name="end-station" id="modal-connection-end-station" required>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="modal-connection-time" class="form-label">Heure</label>
+                                            <input type="time" class="form-control" name="time" id="modal-connection-time" required>
+                                        </div>
+                                        <div class="col mb-3 btn-group-vertical" role="group">
+                                            <input type="radio" class="btn-check" name="time-type" id="modal-connection-time-start" value="departure" checked>
+                                            <label class="btn btn-outline-secondary" for="modal-connection-time-start">Départ</label>
+                                            <input type="radio" class="btn-check" name="time-type" id="modal-connection-time-end" value="arrival">
+                                            <label class="btn btn-outline-secondary" for="modal-connection-time-end">Arrivée</label>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" name="train-number" id="modal-train-number" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="modal-train-number-station" class="form-label">Gare</label>
-                                    <select class="form-select" name="station" id="modal-train-number-station" required default-empty>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary mb-3">Suivre</button>
-                            </form>
-                        </div>
-                        <div class="col-8">
-                            <h6 class="mb-3">Par trajet</h6>
-                            <form id="form-by-connection">
-                                <div class="row row-cols-2">
-                                    <div class="col mb-3">
-                                        <label for="modal-connection-start-station" class="form-label">Gare de départ</label>
-                                        <input list="all-stations" class="form-control" name="start-station" id="modal-connection-start-station" required>
+                                    <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
+                                    <div class="spinner-border spinner-border ms-3 d-none" id="modal-connection-spinner" role="status">
+                                        <span class="visually-hidden">Chargement...</span>
                                     </div>
-                                    <div class="col mb-3">
-                                        <label for="modal-connection-end-station" class="form-label">Gare d'arrivée</label>
-                                        <input list="all-stations" class="form-control" name="end-station" id="modal-connection-end-station" required>
-                                    </div>
-                                    <div class="col mb-3">
-                                        <label for="modal-connection-time" class="form-label">Heure</label>
-                                        <input type="time" class="form-control" name="time" id="modal-connection-time" required>
-                                    </div>
-                                    <div class="col mb-3 btn-group-vertical" role="group">
-                                        <input type="radio" class="btn-check" name="time-type" id="modal-connection-time-start" value="departure" checked>
-                                        <label class="btn btn-outline-secondary" for="modal-connection-time-start">Départ</label>
-                                        <input type="radio" class="btn-check" name="time-type" id="modal-connection-time-end" value="arrival">
-                                        <label class="btn btn-outline-secondary" for="modal-connection-time-end">Arrivée</label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
-                                <div class="spinner-border spinner-border ms-3 d-none" id="modal-connection-spinner" role="status">
-                                    <span class="visually-hidden">Chargement...</span>
-                                </div>
-                                <ul id="found-connections" class="list-group" default-empty></ul>
-                            </form>
+                                    <ul id="found-connections" class="list-group" default-empty></ul>
+                                </form>
+                            </fieldset>
                         </div>
                     </div>
                 </div>

@@ -27,6 +27,11 @@ export default class TrainCard extends HTMLElement {
         this.shadow.appendChild(template.content.cloneNode(true))
         this.shadow.appendChild(document.getElementById("bootstrap-css").cloneNode())
         this.shadow.appendChild(document.getElementById("bootstrap-icons-css").cloneNode())
+
+        /** @type {?int} The ID of the timer used to re-render the card */
+        this.renderTimer = null
+        /** @type {?int} The ID of the timer used to update the card data */
+        this.UpdateTimer = null
     }
 
     static get observedAttributes() { return ["train-number", "station"] }
@@ -54,6 +59,9 @@ export default class TrainCard extends HTMLElement {
     }
 
     render() {
+        // clear the timer that will be set in this method. If it is not set (timer == null), clearTimeout does nothing
+        clearTimeout(self.renderTimer)
+
         const timeDiff = ((this.nextUpdate !== null ? this.nextUpdate : this.lastUpdate) - Date.now()) / 1000
         const reltimefmt = new Intl.RelativeTimeFormat("fr", {numeric: "auto"})
         let updateText = ""
@@ -65,16 +73,16 @@ export default class TrainCard extends HTMLElement {
             updateText = "bientôt"
         } else if(Math.abs(timeDiff) < 90) {
             updateText = reltimefmt.format(Math.round(timeDiff), "second")
-            setTimeout(elm => elm.render(), 5 * 1000, this)
+            self.renderTimer = setTimeout(elm => elm.render(), 5 * 1000, this)
         } else if(Math.abs(timeDiff) < 3600) {
             updateText = reltimefmt.format(Math.round(timeDiff / 60), "minute")
-            setTimeout(elm => elm.render(), 30 * 1000, this)
+            self.renderTimer = setTimeout(elm => elm.render(), 30 * 1000, this)
         } else if(Math.abs(timeDiff) < 60*60*24) {
             updateText = reltimefmt.format(Math.round(timeDiff / 3600), "hour")
-            setTimeout(elm => elm.render(), 30 * 60 * 1000, this)
+            self.renderTimer = setTimeout(elm => elm.render(), 30 * 60 * 1000, this)
         } else {
             updateText = reltimefmt.format(Math.round(timeDiff / (60*60*24)), "day")
-            setTimeout(elm => elm.render(), 12 * 60 * 60 * 1000, this)
+            self.renderTimer = setTimeout(elm => elm.render(), 12 * 60 * 60 * 1000, this)
         }
 
         if(updateText == "")
@@ -88,10 +96,13 @@ export default class TrainCard extends HTMLElement {
     }
 
     update() {
+        clearTimeout(self.UpdateTimer)
+
         getVehicle(this.trainNumber)
         .then(res => res.json())
         .then(data => {
             this.lastUpdate = new Date()
+            this.nextUpdate = null
         })
         .finally(() => this.render())
     }

@@ -197,15 +197,10 @@ const addByConnection = (elm, trainNumber, station) => {
  * @param {string} station
  */
 const addTrainCard = (trainNumber, station) => {
-    const col = document.createElement("div")
-    col.className = "col"
-
     const card = document.createElement("train-card")
     card.setAttribute("train-number", trainNumber)
     card.setAttribute("station", station)
-
-    col.append(card)
-    document.querySelector("#watched-trains > .row").append(col)
+    document.querySelector("#watched-trains > .row").append(card)
 }
 
 /**

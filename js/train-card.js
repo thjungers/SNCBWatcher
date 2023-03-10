@@ -32,6 +32,8 @@ export default class TrainCard extends HTMLElement {
     static get observedAttributes() { return ["train-number", "station"] }
 
     connectedCallback() {
+        this.shadow.querySelector(".tc-btn-close").addEventListener("click", () => this.remove())
+
         this.update() // update calls render 
         this.connected = true
     }

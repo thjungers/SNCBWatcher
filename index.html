@@ -139,13 +139,32 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    Chargement...
+                    <div class="d-none tc-error"></div>
+                    <table class="table tc-table">
+                        <col style="width: 2.5rem;">
+                        <col style="width: 1.8rem;">
+                        <col style="width: 2.5rem;">
+                        <col style="width: 1.8rem;">
+                        <col>
+                        <col style="width: 2.2rem;">
+                        <tbody class="tc-rows"></tbody>
+                    </table>
                 </div>
                 <div class="card-footer tc-footer">
                     <small class="text-muted">Mise à jour <span class="tc-update"></span></small>
                 </div>
             </div>
         </div>
+    </template>
+    <template id="train-card-row-template">
+        <tr>
+            <td class="tsr-arrival-time px-0 text-end"></td>
+            <td class="px-0"><sup class="tsr-arrival-delay"></sup></td>
+            <td class="tsr-departure-time px-0 text-end"></td>
+            <td class="px-0"><sup class="tsr-departure-delay"></sup></td>
+            <td><div class="tsr-station text-truncate"></div></td>
+            <td class="tsr-platform text-end"></td>
+        </tr>
     </template>
 </body>
 </html>

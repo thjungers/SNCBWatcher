@@ -1,0 +1,27 @@
+/* Set the table layout as fixed to allow text-truncate to work */
+.tc-table {
+    table-layout: fixed;
+    margin-bottom: 0;
+}
+
+/* Remove the border below the table */
+.tc-table tr:last-child td {
+    border-style: none;
+}
+
+/* Hide the arrival time for the first station (always equal to departure time) */
+.tc-table tr:first-child td.tsr-arrival-time, 
+.tc-table tr:first-child td.tsr-arrival-delay {
+    visibility: hidden;
+}
+
+/* Hide the departure time for the last station (always equal to arrival time) */
+.tc-table tr:last-child td.tsr-departure-time, 
+.tc-table tr:last-child td.tsr-departure-delay {
+    visibility: hidden;
+}
+
+/* Show a time or station as canceled */
+.tc-table .canceled {
+    text-decoration: line-through;
+}

@@ -3,7 +3,7 @@
 import TrainCard from "./train-card.js"
 import setTheme from "./theme.js"
 import { getStations, getVehicle, getConnections } from "./api-calls.js"
-import { formToObj, formatTime } from "./utils.js"
+import { formToObj, formatTime, tsToDate } from "./utils.js"
 
 /** @type {bootstrap.Modal} */
 let watchTrainModal
@@ -130,7 +130,7 @@ const loadConnections = event => {
                 elm.setAttribute("type", "button")
 
                 let btnText = connection.departure.vehicleinfo.shortname
-                btnText += ` – ${formatTime(parseInt(connection.departure.time)*1000)}-${formatTime(parseInt(connection.arrival.time)*1000)}, `
+                btnText += ` – ${formatTime(tsToDate(connection.departure.time))}-${formatTime(tsToDate(connection.arrival.time))}, `
                 if(!connection.vias || connection.vias.number == 0)
                     btnText += "direct"
                 else

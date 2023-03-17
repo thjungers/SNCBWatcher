@@ -16,3 +16,18 @@ export const formatTime = (dtRepr, fixTzForInput = false) => {
         date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
     return date.toJSON().slice(11, 16)
 }
+
+/**
+ * Convert a timestamp to a Date object
+ * @param {string} timestamp The timestamp returned from the REST API
+ * @returns A Date object corresponding to the given timestamp
+ */
+export const tsToDate = timestamp => new Date(parseInt(timestamp) * 1000)
+
+export const formatDelay = delay => {
+    if(delay == 0)
+        return ""
+    if(delay > 0)
+        return `+${delay}`
+    return delay
+}

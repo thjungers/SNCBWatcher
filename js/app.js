@@ -4,6 +4,7 @@ import TrainCard from "./train-card.js"
 import setTheme from "./theme.js"
 import { getStations, getVehicle, getConnections } from "./api-calls.js"
 import { formToObj, formatTime, tsToDate } from "./utils.js"
+import { localize, t } from "./i18n.js"
 
 /** @type {bootstrap.Modal} */
 let watchTrainModal
@@ -40,6 +41,7 @@ const init = () => {
     document.querySelectorAll(".modal").forEach(
         modal => modal.addEventListener("hidden.bs.modal", resetModal)
     )
+    localize("body")
 }
 
 const requestNotificationPermission = () => {
@@ -144,9 +146,9 @@ const loadConnections = event => {
     })
     .catch(err => {
         if(err.cause?.status == 404)
-            document.getElementById("found-connections").textContent = "Aucune connexion trouvée entre ces gares."
+            document.getElementById("found-connections").textContent = t("modal:connectionNotFound")
         else {
-            document.getElementById("found-connections").textContent = "Erreur de chargement des données de connexion."
+            document.getElementById("found-connections").textContent = t("modal:connectionLoadError")
             console.error(err)
         }
     })
@@ -214,4 +216,7 @@ const resetModal = event => {
     modal.querySelectorAll("[default-empty]").forEach(elm => elm.innerHTML = "")
 }
 
-window.addEventListener("load", init)
+if(document.readyState === "complete")
+    init()
+else
+    document.addEventListener("DOMContentLoaded", init)

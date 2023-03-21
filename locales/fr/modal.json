@@ -1,0 +1,16 @@
+{
+    "followNewTrain": "Suivre un nouveau train",
+    "perTrainNumber": "Par numéro de train",
+    "trainNumber": "Numéro de train",
+    "station": "Gare",
+    "watchTrain": "Suivre",
+    "perConnection": "Par trajet",
+    "departureStation": "Gare de départ",
+    "arrivalStation": "Gare d'arrivée",
+    "time": "Heure",
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "searchConnection": "Rechercher",
+    "connectionNotFound": "Aucun trajet trouvé entre ces gares.",
+    "connectionLoadError": "Erreur de chargement des données de trajet."
+}

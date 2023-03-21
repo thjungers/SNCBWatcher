@@ -1,6 +1,5 @@
 const apiUrl = "https://api.irail.be"
 const format = "json"
-const lang = "fr"
 
 /**
  * Check the return code of the response and throw an error if it is not OK
@@ -20,6 +19,7 @@ const throwNotOkResponse = res => {
  */
 const request = async uri => {
     const sep = uri.includes("?") ? "&" : "?"
+    const lang = document.body.getAttribute("lang")
     return fetch(apiUrl + uri + sep + `format=${format}&lang=${lang}`)
     .then(throwNotOkResponse)
 }

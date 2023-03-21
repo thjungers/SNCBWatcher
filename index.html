@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,60 +52,60 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Suivre un nouveau train</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" data-i18n="modal:followNewTrain"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" data-i18n="[aria-label]close;[title]close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-4">
                             <fieldset>
-                                <legend>Par numéro de train</legend>
+                                <legend data-i18n="modal:perTrainNumber"></legend>
                                 <form id="form-by-train-number">
                                     <div class="mb-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <label for="modal-train-number" class="form-label">Numéro de train</label>
+                                            <label for="modal-train-number" class="form-label" data-i18n="modal:trainNumber"></label>
                                             <div class="spinner-border spinner-border-sm d-none" id="modal-train-number-spinner" role="status">
-                                                <span class="visually-hidden">Chargement...</span>
+                                                <span class="visually-hidden" data-i18n="loading"></span>
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" name="train-number" id="modal-train-number" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="modal-train-number-station" class="form-label">Gare</label>
+                                        <label for="modal-train-number-station" class="form-label" data-i18n="modal:station"></label>
                                         <select class="form-select" name="station" id="modal-train-number-station" required default-empty>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mb-3">Suivre</button>
+                                    <button type="submit" class="btn btn-primary mb-3" data-i18n="modal:watchTrain"></button>
                                 </form>
                             </fieldset>
                         </div>
                         <div class="col-lg-8">
                             <fieldset>
-                                <legend>Par trajet</legend>
+                                <legend data-i18n="modal:perConnection"></legend>
                                 <form id="form-by-connection">
                                     <div class="row row-cols-2">
                                         <div class="col mb-3">
-                                            <label for="modal-connection-start-station" class="form-label">Gare de départ</label>
+                                            <label for="modal-connection-start-station" class="form-label" data-i18n="modal:departureStation"></label>
                                             <input list="all-stations" class="form-control" name="start-station" id="modal-connection-start-station" required>
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="modal-connection-end-station" class="form-label">Gare d'arrivée</label>
+                                            <label for="modal-connection-end-station" class="form-label" data-i18n="modal:arrivalStation"></label>
                                             <input list="all-stations" class="form-control" name="end-station" id="modal-connection-end-station" required>
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="modal-connection-time" class="form-label">Heure</label>
+                                            <label for="modal-connection-time" class="form-label" data-i18n="modal:time"></label>
                                             <input type="time" class="form-control" name="time" id="modal-connection-time" required>
                                         </div>
                                         <div class="col mb-3 btn-group-vertical" role="group">
                                             <input type="radio" class="btn-check" name="time-type" id="modal-connection-time-start" value="departure" checked>
-                                            <label class="btn btn-outline-secondary" for="modal-connection-time-start">Départ</label>
+                                            <label class="btn btn-outline-secondary" for="modal-connection-time-start" data-i18n="modal:departure"></label>
                                             <input type="radio" class="btn-check" name="time-type" id="modal-connection-time-end" value="arrival">
-                                            <label class="btn btn-outline-secondary" for="modal-connection-time-end">Arrivée</label>
+                                            <label class="btn btn-outline-secondary" for="modal-connection-time-end" data-i18n="modal:arrival"></label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
+                                    <button type="submit" class="btn btn-primary mb-3" data-i18n="modal:searchConnection"></button>
                                     <div class="spinner-border spinner-border ms-3 d-none" id="modal-connection-spinner" role="status">
-                                        <span class="visually-hidden">Chargement...</span>
+                                        <span class="visually-hidden" data-i18n="loading"></span>
                                     </div>
                                     <ul id="found-connections" class="list-group" default-empty></ul>
                                 </form>
@@ -133,7 +133,7 @@
                         <button type="button" class="btn btn-secondary tc-btn-alert">
                             <i class="bi bi-bell"></i>
                         </button>
-                        <button type="button" class="btn btn-danger tc-btn-close" aria-label="Close">
+                        <button type="button" class="btn btn-danger tc-btn-close" data-i18n="[aria-label]close;[title]close">
                             <i class="bi bi-x-lg"></i>
                         </button>
                     </div>
@@ -151,7 +151,7 @@
                     </table>
                 </div>
                 <div class="card-footer tc-footer">
-                    <small class="text-muted">Mise à jour <span class="tc-update"></span></small>
+                    <small class="text-muted"><span data-i18n="train-card:update"></span> <span class="tc-update"></span></small>
                 </div>
             </div>
         </div>

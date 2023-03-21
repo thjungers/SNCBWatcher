@@ -1,5 +1,6 @@
 import { getVehicle } from "./api-calls.js"
 import { formatTime, tsToDate, formatDelay } from "./utils.js"
+import { localize, t } from "./i18n.js"
 
 /**
  * Custom component for train watch cards
@@ -47,6 +48,7 @@ export default class TrainCard extends HTMLElement {
         this.shadow.querySelector(".tc-btn-close").addEventListener("click", () => this.remove())
 
         this.update() // update calls render 
+        this.localize()
         this.connected = true
     }
 
@@ -62,6 +64,10 @@ export default class TrainCard extends HTMLElement {
             // only update and render if this change occured after the element was connected to the DOM
             this.update() // update calls render 
         }
+    }
+
+    localize() {
+        localize("[data-i18n]", {document: this.shadow})
     }
 
     /**
@@ -99,7 +105,7 @@ export default class TrainCard extends HTMLElement {
             updateText = ""
         } else if(this.nextUpdate !== null && timeDiff < 0) {
             // nextUpdate is defined but is in the past: the component should update momentarily
-            updateText = "bientôt"
+            updateText = t("train-card:update-soon")
         } else if(Math.abs(timeDiff) < 90) {
             updateText = reltimefmt.format(Math.round(timeDiff), "second")
             self.renderTimer = setTimeout(elm => elm.render(), 5 * 1000, this)
@@ -177,16 +183,11 @@ export default class TrainCard extends HTMLElement {
             this.nextUpdate = null
         })
         .catch(err => {
-            if(err.cause?.status == 404)
-                this.error = {
-                    status: 404,
-                    message: "Ce train ne semble pas circuler aujourd'hui."
-                }
-            else
-                this.error = {
-                    status: err.cause?.status,
-                    message: "Une erreur s'est produite."
-                }
+            const status = err.cause?.status
+            this.error = {
+                status: status,
+                message: t([`train-card:error-${status}`, "train-card:error-undefined"])
+            }
         })
         .finally(() => this.render())
     }

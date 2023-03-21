@@ -1,0 +1,16 @@
+{
+    "followNewTrain": "Watch a new train",
+    "perTrainNumber": "By train number",
+    "trainNumber": "Train number",
+    "station": "Station",
+    "watchTrain": "Watch",
+    "perConnection": "By connection",
+    "departureStation": "Departure station",
+    "arrivalStation": "Arrival station",
+    "time": "Time",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "searchConnection": "Search",
+    "connectionNotFound": "No connection found between these stations.",
+    "connectionLoadError": "An error occured while fetching the connection data."
+}

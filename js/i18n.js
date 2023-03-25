@@ -1,6 +1,6 @@
 import i18next from "https://cdn.jsdelivr.net/npm/i18next@22.4.11/+esm"
 import httpBackend from "https://cdn.jsdelivr.net/npm/i18next-http-backend@2.2.0/+esm"
-import locI18next from "/js/loc-i18next.js"
+import locI18next from "./loc-i18next.js"
 
 await i18next.use(httpBackend).init({
     backend: {

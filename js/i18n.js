@@ -4,7 +4,7 @@ import locI18next from "./loc-i18next.js"
 
 await i18next.use(httpBackend).init({
     backend: {
-        loadPath: "/locales/{{lng}}/{{ns}}.json"
+        loadPath: "../locales/{{lng}}/{{ns}}.json"
     },
     lng: "fr", // FIX remove this when enabling language detector
     fallbackLng: "en",

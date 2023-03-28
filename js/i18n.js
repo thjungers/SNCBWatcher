@@ -10,13 +10,11 @@ await i18next
         backend: {
             loadPath: "locales/{{lng}}/{{ns}}.json"
         },
-        //lng: "fr", // FIX remove this when enabling language detector
         fallbackLng: "en",
         supportedLngs: ["en", "fr", "nl"],
         load: "languageOnly",
         ns: ["common", "modal", "train-card"],
         defaultNS: "common",
-        //debug: true,
     })
 
 document.documentElement.lang = i18next.language

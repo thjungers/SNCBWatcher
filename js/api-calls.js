@@ -19,7 +19,7 @@ const throwNotOkResponse = res => {
  */
 const request = async uri => {
     const sep = uri.includes("?") ? "&" : "?"
-    const lang = document.body.getAttribute("lang")
+    const lang = document.documentElement.lang
     return fetch(apiUrl + uri + sep + `format=${format}&lang=${lang}`)
     .then(throwNotOkResponse)
 }
